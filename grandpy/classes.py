@@ -11,6 +11,8 @@ class Parsing:
     def returnkeyword(self):
         self.question = self.question.lower()
         self.question = self.question.replace("'",' ')
+        self.question = re.sub(r'[?!%:]',"",self.question)
+        self.question = re.sub(r'[-,]'," ",self.question)
         self.question = self.question.split()
         for word in self.question:
             if word not in STOPWORDS:
