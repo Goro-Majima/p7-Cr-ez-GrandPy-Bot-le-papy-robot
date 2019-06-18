@@ -18,3 +18,7 @@ class Testparsing():
     def test_request_to_grandpybot2(self):
         result4 = Parsing("ou se trouve notre dame ?")   
         assert result4.returnkeyword() == "notre dame"
+
+class Testgooglemaps():
+    
+    def 
