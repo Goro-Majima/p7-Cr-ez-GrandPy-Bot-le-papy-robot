@@ -25,7 +25,3 @@ class Testparsing:
         assert result3.returnkeyword() == "openclassrooms"
 
 class Testgooglemaps:
-    """ Check whats api should return"""
-    def test_http_result(self):
-
-        assert Googlemap.http_results() == 'hello'
