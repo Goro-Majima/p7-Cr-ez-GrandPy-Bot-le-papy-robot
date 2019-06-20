@@ -1,3 +1,5 @@
 re
 pip install flask 
 pip install google-api-client
+
+https://fr.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=3&exlimit=1&explaintext=True&titles=montevrain&format=json

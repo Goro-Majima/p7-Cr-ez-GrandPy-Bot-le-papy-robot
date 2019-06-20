@@ -4,13 +4,15 @@
 # import requests
 # from datetime import datetime
 
+# splitted = 'openclassrooms'
+
 # gmaps = googlemaps.Client(key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek")
 
 # #Geocoding an address
 # geocode_result = gmaps.geocode('tour eiffel')
 
 # # Look up an address with reverse geocoding
-# reverse_geocode_result = gmaps.reverse_geocode((48.8747265, 2.3505517))
+# # reverse_geocode_result = gmaps.reverse_geocode((48.8747265, 2.3505517))
 
 # # # Request directions via public transit
 # # now = datetime.now()
@@ -69,21 +71,31 @@ import requests
 
 S = requests.Session()
 
-URL = "https://en.wikipedia.org/w/api.php"
+URL = "https://fr.wikipedia.org/w/api.php"
 
-TITLE = 'Wikimedia Foundation'
-
+TITLE = 'place Pigalle'
+"""choose de right parameters to get the first description of the place
+check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
+"""
 PARAMS = {
     'action':"query",
-    'prop':"coordinates",
+    'prop':"extracts",
+    'exsentences':3,
+    'exlimit':1,
+    'explaintext':True,
+    'exsectionformat':'plain',
     'titles': TITLE,
     'format':"json"
 }
 
 R = S.get(url=URL, params=PARAMS)
 DATA = R.json()
-PAGES = DATA['query']['pages']
+PAGES = DATA['query']['pages']['extract']
 
-for k, v in PAGES.items():
-    print("Latitute: " + str(v['coordinates'][0]['lat']))
-    print("Longitude: " + str(v['coordinates'][0]['lon']))
+# for k, v in PAGES.items():
+#     print("Latitute: " + str(v['coordinates'][0]['lat']))
+#     print("Longitude: " + str(v['coordinates'][0]['lon']))
+try:
+    print(PAGES)
+except KeyError:
+    pass

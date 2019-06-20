@@ -8,14 +8,14 @@ import urllib.request
 
 
 class Testparsing:
-    """ Check the parser"""
+    """ Check if the parser return a filtered keyword for a geo search """
     def test_return_lowered_case(self):
         """Check if string is lowered"""
         result = Parsing("265 Avenue du Midi")
         assert result.returnkeyword() == "265 avenue midi"
 
     def test_no_punctuation_sentence(self):
-        """check if the punctuation is removed"""
+        """check if the punctuation is removed """
         result2 = Parsing("ou est l'adresse: de 5 rue de Versailles chantier ??%")
         assert result2.returnkeyword() == "5 rue versailles chantier"
 
@@ -25,3 +25,18 @@ class Testparsing:
         assert result3.returnkeyword() == "openclassrooms"
 
 class Testgooglemaps:
+    """ Check what the function return from the google api """
+    def test_adress_and_coordinates(self):
+        """Check the output"""
+        tested_keyword = Googlemap("tour eiffel")
+        
+        assert response.http_results() == ('Champ de Mars, 5 Avenue Anatole France,\
+             75007 Paris, France', 48.85837009999999, 2.2944813)
+
+
+class Testmediawiki:
+    """ Check that the function return a short description \
+        of a keyword or address from the mediawiki api """
+    def test_text_returned_from_keyword(self):
+        tested_keyword_or_coordinate = "tour eiffel"
+        

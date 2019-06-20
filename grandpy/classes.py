@@ -24,17 +24,18 @@ class Parsing:
 
 class Googlemap():
     """ Will return the coordiantes and the address asked by the user"""
-    def __init__(self):
-        self.address = address
-        self.latitude = latitude
-        self.longitude = longitude       
+    def __init__(self, splittedquestion):
+        self.splittedquestion = splittedquestion
+        self.address = str
+        self.latitude = float
+        self.longitude = float       
 
-    def http_results(self, splittedquestion):
+    def http_results(self):
         """ Return lattitude, longitude and address from given input"""
         gmaps = googlemaps.Client(key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek")
         #Geocoding an address
-        geocode_result = gmaps.geocode(splittedquestion)
-        self.address = geocode_result[0]['formatted_address']
+        geocode_result = gmaps.geocode(self.splittedquestion)
+        self.address = geocode_result[0]['formatted_address']  
         self.latitude = geocode_result[0]["geometry"]["location"]["lat"]
-        self.longitude = geocode_result[0]["geometry"]["location"]["lng"]       
+        self.longitude = geocode_result[0]["geometry"]["location"]["lng"]     
         return self.address, self.latitude, self.longitude
