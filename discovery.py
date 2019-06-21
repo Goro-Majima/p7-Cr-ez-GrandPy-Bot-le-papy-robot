@@ -67,20 +67,21 @@
 #     print(', '.join([l.title for l in page.links]))
 #     print()
 
+"""mediawiki ok"""
 import requests
 
 S = requests.Session()
 
 URL = "https://fr.wikipedia.org/w/api.php"
 
-TITLE = 'place Pigalle'
+TITLE = 'Montparnasse'
 """choose de right parameters to get the first description of the place
 check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
 """
 PARAMS = {
     'action':"query",
     'prop':"extracts",
-    'exsentences':3,
+    'exsentences':1,
     'exlimit':1,
     'explaintext':True,
     'exsectionformat':'plain',
@@ -90,12 +91,10 @@ PARAMS = {
 
 R = S.get(url=URL, params=PARAMS)
 DATA = R.json()
-PAGES = DATA['query']['pages']['extract']
+PAGES = DATA['query']['pages']
 
-# for k, v in PAGES.items():
-#     print("Latitute: " + str(v['coordinates'][0]['lat']))
-#     print("Longitude: " + str(v['coordinates'][0]['lon']))
 try:
-    print(PAGES)
+    for k, v in PAGES.items():
+        print(v['extract'])
 except KeyError:
-    pass
+    print("Désolé ")

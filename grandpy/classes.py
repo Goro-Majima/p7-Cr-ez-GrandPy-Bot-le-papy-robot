@@ -1,6 +1,8 @@
 import re
 import googlemaps
 import googlemaps.client
+import requests
+
 from grandpy.stopwords import *
 
 
@@ -39,3 +41,37 @@ class Googlemap():
         self.latitude = geocode_result[0]["geometry"]["location"]["lat"]
         self.longitude = geocode_result[0]["geometry"]["location"]["lng"]     
         return self.address, self.latitude, self.longitude
+
+class Mediawiki:
+    """ keyword will be used to find a short history of a place"""
+    def __init__(self, splittedquestion):
+        self.splittedquestion = splittedquestion
+    
+    def historytell(self):
+        S = requests.Session()
+        noextract = "désolé pas d'histoire"
+        URL = "https://fr.wikipedia.org/w/api.php"
+
+        TITLE = self.splittedquestion
+        """choose de right parameters to get the first description of the place
+        check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
+        """
+        PARAMS = {
+            'action':"query",
+            'prop':"extracts",
+            'exsentences':1,
+            'exlimit':1,
+            'explaintext':True,
+            'exsectionformat':'plain',
+            'titles': TITLE,
+            'format':"json"
+        }
+        R = S.get(url=URL, params=PARAMS)
+        DATA = R.json()
+        PAGES = DATA['query']['pages']
+
+        try:
+            for k, v in PAGES.items():
+                return v['extract']
+        except KeyError:
+            return noextract

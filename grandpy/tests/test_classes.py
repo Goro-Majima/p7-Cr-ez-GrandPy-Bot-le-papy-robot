@@ -1,11 +1,10 @@
 """ Test driven development file used to test classes file"""
-from grandpy.classes import Parsing,Googlemap
+from grandpy.classes import Parsing,Googlemap,Mediawiki
 from grandpy import classes
 
 import googlemaps
 import googlemaps.client
 import urllib.request
-
 
 class Testparsing:
     """ Check if the parser return a filtered keyword for a geo search """
@@ -29,14 +28,18 @@ class Testgooglemaps:
     def test_adress_and_coordinates(self):
         """Check the output"""
         tested_keyword = Googlemap("tour eiffel")
-        
-        assert response.http_results() == ('Champ de Mars, 5 Avenue Anatole France,\
-             75007 Paris, France', 48.85837009999999, 2.2944813)
+        mock = 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France', 48.85837009999999, 2.2944813 
+        assert tested_keyword.http_results() == mock
 
 
 class Testmediawiki:
     """ Check that the function return a short description \
         of a keyword or address from the mediawiki api """
     def test_text_returned_from_keyword(self):
-        tested_keyword_or_coordinate = "tour eiffel"
-        
+        tested_keyword = Mediawiki("Montparnasse")
+        mock2 = "Montparnasse est un toponyme parisien."
+        assert tested_keyword.historytell() == mock2
+    def test_nothing_to_tell(self):
+        tested_keyword2 = Mediawiki('tour eiffel')
+        mock3 = "désolé pas d'histoire"
+        assert tested_keyword2.historytell() == mock3
