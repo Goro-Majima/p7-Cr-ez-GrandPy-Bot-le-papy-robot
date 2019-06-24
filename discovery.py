@@ -67,41 +67,56 @@
 #     print(', '.join([l.title for l in page.links]))
 #     print()
 
-"""mediawiki ok"""
-import requests
+# """mediawiki ok"""
+# import requests
 
-S = requests.Session()
+# S = requests.Session()
 
-URL = "https://fr.wikipedia.org/w/api.php"
+# URL = "https://fr.wikipedia.org/w/api.php"
 
-TITLE = 'Montparnasse'
-"""choose de right parameters to get the first description of the place
-check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
-"""
-PARAMS = {
-    'action':"query",
-    'prop':"extracts",
-    'exsentences':1,
-    'exlimit':1,
-    'explaintext':True,
-    'exsectionformat':'plain',
-    'titles': TITLE,
-    'format':"json"
-}
+# TITLE = 'Montparnasse'
+# """choose de right parameters to get the first description of the place
+# check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
+# """
+# PARAMS = {
+#     'action':"query",
+#     'prop':"extracts",
+#     'exsentences':1,
+#     'exlimit':1,
+#     'explaintext':True,
+#     'exsectionformat':'plain',
+#     'titles': TITLE,
+#     'format':"json"
+# }
 
-R = S.get(url=URL, params=PARAMS)
-DATA = R.json()
-PAGES = DATA['query']['pages']
+# R = S.get(url=URL, params=PARAMS)
+# DATA = R.json()
+# PAGES = DATA['query']['pages']
 
-try:
-    for k, v in PAGES.items():
-        print(v['extract'])
-except KeyError:
-    print("Désolé ")
+# try:
+#     for k, v in PAGES.items():
+#         print(v['extract'])
+# except KeyError:
+#     print("Désolé ")
 
 from grandpy.classes import *
+
+noanswer = "Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =("
 
 query = input("entre ton lieu: ")
 parsedquery = Parsing(query)
 keyword = parsedquery.returnkeyword()
-print(keyword)
+datagmap = Googlemap(keyword)
+try:
+    location = datagmap.http_results()
+    diction = {'place': keyword, 'address':location[0], 'latitude': location[1], 'longitude': location[2]}
+except IndexError:
+    print(noanswer)
+try:
+    mediawikistory = Mediawiki(keyword).historytell()
+    diction = {'place': keyword, 'address':location[0], 'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
+    print(diction)
+except KeyError:
+    print("Désolé mon petit mais je ne me souviens plus de l'histoire de ce lieu")
+
+

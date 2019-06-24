@@ -49,7 +49,7 @@ class Mediawiki:
     
     def historytell(self):
         S = requests.Session()
-        noextract = "désolé pas d'histoire"
+        noextract = "désolé mon petit mais je n'ai pas réussi à trouver ce lieu"
         URL = "https://fr.wikipedia.org/w/api.php"
 
         TITLE = self.splittedquestion
