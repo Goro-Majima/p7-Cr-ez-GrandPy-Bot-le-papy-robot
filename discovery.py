@@ -98,3 +98,10 @@ try:
         print(v['extract'])
 except KeyError:
     print("Désolé ")
+
+from grandpy.classes import *
+
+query = input("entre ton lieu: ")
+parsedquery = Parsing(query)
+keyword = parsedquery.returnkeyword()
+print(keyword)
