@@ -4,6 +4,7 @@ import googlemaps.client
 import requests
 
 from grandpy.stopwords import *
+from config import *
 
 
 class Parsing:
@@ -34,7 +35,7 @@ class Googlemap():
 
     def http_results(self):
         """ Return lattitude, longitude and address from given input"""
-        gmaps = googlemaps.Client(key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek")
+        gmaps = googlemaps.Client(key=SECRET_KEY)
         #Geocoding an address
         geocode_result = gmaps.geocode(self.splittedquestion)
         self.address = geocode_result[0]['formatted_address']  
@@ -49,7 +50,6 @@ class Mediawiki:
     
     def historytell(self):
         S = requests.Session()
-        noextract = "désolé mon petit mais je n'ai pas réussi à trouver ce lieu"
         URL = "https://fr.wikipedia.org/w/api.php"
 
         TITLE = self.splittedquestion
@@ -65,13 +65,12 @@ class Mediawiki:
             'exsectionformat':'plain',
             'titles': TITLE,
             'format':"json"
+            # "prop": "info",
+            # 'inprop': 'url'
         }
         R = S.get(url=URL, params=PARAMS)
         DATA = R.json()
         PAGES = DATA['query']['pages']
+        for k, v in PAGES.items():
+            return v['extract']
 
-        try:
-            for k, v in PAGES.items():
-                return v['extract']
-        except KeyError:
-            return noextract

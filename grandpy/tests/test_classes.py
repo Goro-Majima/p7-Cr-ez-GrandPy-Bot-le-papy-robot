@@ -39,7 +39,7 @@ class Testmediawiki:
         mock2 = "Montparnasse est un toponyme parisien."
         assert tested_keyword.historytell() == mock2
     
-    def test_nothing_to_tell(self):
-        tested_keyword2 = Mediawiki('tour eiffel')
-        mock3 = "désolé mon petit mais je n'ai pas réussi à trouver ce lieu"
-        assert tested_keyword2.historytell() == mock3
+    # def test_nothing_to_tell(self):
+    #     tested_keyword2 = Mediawiki('tour eiffel')
+    #     mock3 = "désolé mon petit mais je n'ai pas réussi à trouver ce lieu"
+    #     assert tested_keyword2.historytell() == mock3

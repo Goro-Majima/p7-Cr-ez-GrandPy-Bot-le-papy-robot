@@ -3,6 +3,7 @@
 # import json
 # import requests
 # from datetime import datetime
+# from config import *
 
 # splitted = 'openclassrooms'
 
@@ -86,13 +87,16 @@
 #     'explaintext':True,
 #     'exsectionformat':'plain',
 #     'titles': TITLE,
-#     'format':"json"
+#     'format':"json",
+#     "prop": "info",
+#     'inprop': 'url'
 # }
 
 # R = S.get(url=URL, params=PARAMS)
 # DATA = R.json()
 # PAGES = DATA['query']['pages']
-
+# print(DATA)
+# print(PAGES)
 # try:
 #     for k, v in PAGES.items():
 #         print(v['extract'])
@@ -101,22 +105,31 @@
 
 from grandpy.classes import *
 
-noanswer = "Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =("
-
 query = input("entre ton lieu: ")
 parsedquery = Parsing(query)
 keyword = parsedquery.returnkeyword()
 datagmap = Googlemap(keyword)
+#try to get address and coordinates"""
 try:
     location = datagmap.http_results()
-    diction = {'place': keyword, 'address':location[0], 'latitude': location[1], 'longitude': location[2]}
+    diction = {'papyintro': 'Voici le lieu que tu cherches: ', 'address':location[0],\
+        'latitude': location[1], 'longitude': location[2]}
+    infowithoutstory = diction['papyintro'] + diction['address'] + ", ses coordonnées gps: ", \
+    diction['latitude'], diction['longitude']
+    print(infowithoutstory)
+    #try to get a story from mediawiki with the keyword
+    try:
+        mediawikistory = Mediawiki(keyword).historytell()
+        diction = {'papyintro': 'Voici le lieu que tu cherches:', 'address':location[0],\
+        'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
+        infowithstory = "j'ai une belle histoire à raconter sur ce lieu: " + diction['story'] 
+        print(infowithstory)
+    #return negative answer if no story to tell
+    except KeyError:
+        print("Désolé mon petit mais je ne me souviens plus de l'histoire de ce lieu")
+#return negative answer if index out of list or no data""" 
 except IndexError:
-    print(noanswer)
-try:
-    mediawikistory = Mediawiki(keyword).historytell()
-    diction = {'place': keyword, 'address':location[0], 'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
-    print(diction)
-except KeyError:
-    print("Désolé mon petit mais je ne me souviens plus de l'histoire de ce lieu")
+    print("Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =(")
+
 
 
