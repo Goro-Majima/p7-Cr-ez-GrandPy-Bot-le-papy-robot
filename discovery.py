@@ -69,41 +69,39 @@
 #     print()
 
 """mediawiki ok"""
-import requests
+# import requests
 
-S = requests.Session()
+# S = requests.Session()
 
-URL = "https://fr.wikipedia.org/w/api.php"
+# URL = "https://fr.wikipedia.org/w/api.php"
 
-TITLE = 'basilic dsaint maximin'
-"""choose de right parameters to get the first description of the place
-check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
-"""
-PARAMS = {
-    'action':"query",
-    'exsentences':1,
-    'exlimit':1,
-    'explaintext':True,
-    'exsectionformat':'plain',
-    'titles': TITLE,
-    'format':"json",
-    "prop":"extracts|info",
-    'inprop': 'url'
-}
+# LIST = 'tour eiffel'
+# TITLE = 'marseille'
+# """choose de right parameters to get the first description of the place
+# check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
+# """
+# PARAMS = {
+#     'action':"query",
+#     'exsentences':1,
+#     'exlimit':1,
+#     'explaintext':True,
+#     'exsectionformat':'plain',
+#     'titles': TITLE,
+#     'format':"json",
+#     "prop":"extracts|info",
+#     'inprop': 'url'
+# }
 
-R = S.get(url=URL, params=PARAMS)
-DATA = R.json()
-PAGES = DATA['query']['pages']
+# R = S.get(url=URL, params=PARAMS)
+# DATA = R.json()
+# PAGES = DATA['query']['pages']
 
-
+# print(PAGES)
 # try:
 #     for k, v in PAGES.items():
 #         print('story: ', v['extract'],' lien: ', v['fullurl'])
 # except KeyError:
 #     print("Désolé ")
-
-for k, v in PAGES.items():
-    print('story: ', v['extract'],' lien: ', v['fullurl'])
 
 # from grandpy.classes import *
 
@@ -134,5 +132,51 @@ for k, v in PAGES.items():
 # except IndexError:
 #     print("Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =(")
 
+import requests
 
+S = requests.Session()
 
+URL = "https://fr.wikipedia.org/w/api.php"
+
+COORDS = '48.8604234|2.7604437'
+
+PARAMS = {
+    'action':"query",
+    'list':"geosearch",
+    'gscoord': COORDS,
+    'gsradius':10000,
+    'gslimit':1,
+    'format':"json"
+}
+
+R = S.get(url=URL, params=PARAMS)
+DATA = R.json()
+
+PLACES = DATA['query']['geosearch']
+
+for place in PLACES:
+    print(place['title'])
+
+TITLE = place['title']
+
+PARAMS = {
+    'action':"query",
+    'exsentences':1,
+    'exlimit':1,
+    'explaintext':True,
+    'exsectionformat':'plain',
+    'titles': TITLE,
+    'format':"json",
+    "prop":"extracts|info",
+    'inprop': 'url'
+}
+
+R = S.get(url=URL, params=PARAMS)
+DATA = R.json()
+PAGES = DATA['query']['pages']
+
+try:
+    for k, v in PAGES.items():
+        print('story: ', v['extract'],' lien: ', v['fullurl'])
+except KeyError:
+    print("Désolé ")
