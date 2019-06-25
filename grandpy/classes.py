@@ -63,8 +63,8 @@ class Mediawiki:
             'explaintext':True,
             'exsectionformat':'plain',
             'titles': TITLE,
-            'format':"json"
-            "prop": "extracts|info",
+            'format':"json",
+            'prop':"extracts|info",
             'inprop': 'url'
         }
         R = S.get(url=URL, params=PARAMS)
@@ -73,5 +73,5 @@ class Mediawiki:
 
         PAGES = DATA['query']['pages']
         for k, v in PAGES.items():
-            return v['extract'], v['info']
+            return v['extract'], v['fullurl']
 

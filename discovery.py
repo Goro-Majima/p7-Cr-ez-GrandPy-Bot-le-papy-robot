@@ -75,7 +75,7 @@ S = requests.Session()
 
 URL = "https://fr.wikipedia.org/w/api.php"
 
-TITLE = 'Montparnasse'
+TITLE = 'basilic dsaint maximin'
 """choose de right parameters to get the first description of the place
 check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
 """
@@ -87,20 +87,23 @@ PARAMS = {
     'exsectionformat':'plain',
     'titles': TITLE,
     'format':"json",
-    "prop": "extracts|info",
+    "prop":"extracts|info",
     'inprop': 'url'
 }
 
 R = S.get(url=URL, params=PARAMS)
 DATA = R.json()
 PAGES = DATA['query']['pages']
-print(DATA)
 
-try:
-    for k, v in PAGES.items():
-        print('story: ', v['extract'],' lien: ', v['fullurl'])
-except KeyError:
-    print("Désolé ")
+
+# try:
+#     for k, v in PAGES.items():
+#         print('story: ', v['extract'],' lien: ', v['fullurl'])
+# except KeyError:
+#     print("Désolé ")
+
+for k, v in PAGES.items():
+    print('story: ', v['extract'],' lien: ', v['fullurl'])
 
 # from grandpy.classes import *
 
@@ -116,13 +119,14 @@ except KeyError:
 #     infowithoutstory = diction['papyintro'] + diction['address'] + ", ses coordonnées gps: ", \
 #     diction['latitude'], diction['longitude']
 #     print(infowithoutstory)
-#     #try to get a story from mediawiki with the keyword
+#     #try to get a story an,d link (tuple) from mediawiki with the keyword
 #     try:
 #         mediawikistory = Mediawiki(keyword).historytell()
 #         diction = {'papyintro': 'Voici le lieu que tu cherches:', 'address':location[0],\
 #         'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
-#         infowithstory = "j'ai une belle histoire à raconter sur ce lieu: " + diction['story'] 
+#         infowithstory = "J'ai une belle histoire à raconter sur ce lieu: " + diction['story'][0]# diction['story'] is a tuple
 #         print(infowithstory)
+#         print("Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1])
 #     #return negative answer if no story to tell
 #     except KeyError:
 #         print("Désolé mon petit mais je ne me souviens plus de l'histoire de ce lieu")
