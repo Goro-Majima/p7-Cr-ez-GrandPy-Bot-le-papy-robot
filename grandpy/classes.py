@@ -58,19 +58,20 @@ class Mediawiki:
         """
         PARAMS = {
             'action':"query",
-            'prop':"extracts",
             'exsentences':1,
             'exlimit':1,
             'explaintext':True,
             'exsectionformat':'plain',
             'titles': TITLE,
             'format':"json"
-            # "prop": "info",
-            # 'inprop': 'url'
+            "prop": "extracts|info",
+            'inprop': 'url'
         }
         R = S.get(url=URL, params=PARAMS)
         DATA = R.json()
+
+
         PAGES = DATA['query']['pages']
         for k, v in PAGES.items():
-            return v['extract']
+            return v['extract'], v['info']
 
