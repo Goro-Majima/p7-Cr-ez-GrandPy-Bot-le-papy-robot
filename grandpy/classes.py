@@ -45,14 +45,26 @@ class Googlemap():
 
 class Mediawiki:
     """ keyword will be used to find a short history of a place"""
-    def __init__(self, splittedquestion):
-        self.splittedquestion = splittedquestion
-    
+    def __init__(self, latitude, longitude):
+        self.latitude = latitude
+        self.longitude = longitude
+
     def historytell(self):
         S = requests.Session()
         URL = "https://fr.wikipedia.org/w/api.php"
-
-        TITLE = self.splittedquestion
+        #https://www.coordonnees-gps.fr/
+        PARAMS = {
+            'action':"query",
+            'list':"geosearch",
+            'gscoord': str(self.latitude) + "|" + str(self.longitude),
+            'gsradius':1000,
+            'gslimit':1,
+            'format':"json"
+        }
+        R = S.get(url=URL, params=PARAMS)
+        DATA = R.json()
+        PLACES = DATA['query']['geosearch']
+        TITLE = PLACES[0]['title']
         """choose de right parameters to get the first description of the place
         check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
         """
@@ -69,8 +81,6 @@ class Mediawiki:
         }
         R = S.get(url=URL, params=PARAMS)
         DATA = R.json()
-
-
         PAGES = DATA['query']['pages']
         for k, v in PAGES.items():
             return v['extract'], v['fullurl']
