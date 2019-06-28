@@ -28,24 +28,24 @@ from config import *
 # #test - print results
 # print (geocode_result) 
 
-"""autre manière de recuperer coordonées api gmaps"""
-S = requests.Session()
-key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek"
-URL= "https://maps.googleapis.com/maps/api/geocode/json"
+# """autre manière de recuperer coordonées api gmaps"""
+# S = requests.Session()
+# key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek"
+# URL= "https://maps.googleapis.com/maps/api/geocode/json"
 
-splitted = 'openclassrooms'
+# splitted = 'openclassrooms'
 
-PARAMS = {
-    'address': splitted,
-    'key': key,
-    'region':'fr'
-}
-R = S.get(url= URL, params=PARAMS)
-DATA = R.json()
-lat = DATA['results'][0]['geometry']['location']['lat']
-lng = DATA['results'][0]['geometry']['location']['lng']
-address = DATA['results'][0]['formatted_address']
-print(lat, lng, address)
+# PARAMS = {
+#     'address': splitted,
+#     'key': key,
+#     'region':'fr'
+# }
+# R = S.get(url= URL, params=PARAMS)
+# DATA = R.json()
+# lat = DATA['results'][0]['geometry']['location']['lat']
+# lng = DATA['results'][0]['geometry']['location']['lng']
+# address = DATA['results'][0]['formatted_address']
+# print(lat, lng, address)
 
 
 # # """mediawiki ok"""
@@ -95,7 +95,7 @@ try:
     location = datagmap.http_results()
     diction = {'papyintro': "Bien sûr mon poussin! La voici: ", 'address':location[2],\
         'latitude': location[0], 'longitude': location[1]}
-    infowithoutstory = diction['papyintro'] + diction['address']
+    addressinfo = diction['papyintro'] + diction['address']
     
     #try to get a story an,d link (tuple) from mediawiki with the keyword
     try:
@@ -104,12 +104,13 @@ try:
         'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
         infowithstory = "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? " + diction['story'][0]# diction['story'] is a tuple
         link = "Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1]
-        print(infowithoutstory)
+        print(addressinfo)
         print(infowithstory)
         print("")
-        print("Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1])
+        print(link)
     #return negative answer if no story to tell
     except IndexError:
+        print(infowithoutstory)
         print("Désolé mon petit mais j'ai tout oublié à propos de ce lieu...")
 #return negative answer if index out of list or no data""" 
 except IndexError:

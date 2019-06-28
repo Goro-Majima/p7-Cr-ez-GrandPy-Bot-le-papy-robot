@@ -9,7 +9,7 @@ def home():
     return render_template('home.html')
 
 # @app.route('/')
-# def ajax():
+# def ajax(query):
 
     # query = input("entre ton lieu: ")
     # parsedquery = Parsing(query)
