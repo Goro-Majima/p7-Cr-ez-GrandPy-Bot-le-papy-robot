@@ -35,13 +35,23 @@ class Googlemap():
 
     def http_results(self):
         """ Return lattitude, longitude and address from given input"""
-        gmaps = googlemaps.Client(key=SECRET_KEY)
-        #Geocoding an address
-        geocode_result = gmaps.geocode(self.splittedquestion)
-        self.address = geocode_result[0]['formatted_address']  
-        self.latitude = geocode_result[0]["geometry"]["location"]["lat"]
-        self.longitude = geocode_result[0]["geometry"]["location"]["lng"]     
-        return self.address, self.latitude, self.longitude
+        S = requests.Session()
+        key=SECRET_KEY
+        URL= "https://maps.googleapis.com/maps/api/geocode/json"
+
+        splitted = self.splittedquestion
+
+        PARAMS = {
+            'address': splitted,
+            'key': key,
+            'region':'fr'
+        }
+        R = S.get(url= URL, params=PARAMS)
+        DATA = R.json()
+        lat = DATA['results'][0]['geometry']['location']['lat']
+        lng = DATA['results'][0]['geometry']['location']['lng']
+        address = DATA['results'][0]['formatted_address']
+        return lat, lng, address
 
 class Mediawiki:
     """ keyword will be used to find a short history of a place"""
@@ -64,14 +74,14 @@ class Mediawiki:
         R = S.get(url=URL, params=PARAMS)
         DATA = R.json()
         PLACES = DATA['query']['geosearch']
-        TITLE = PLACES[0]['title']
+        TITLE = PLACES[0]['title'] #actually get the closest to given coordinates but what if not accurate coordinates ?
         """choose de right parameters to get the first description of the place
         check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
         """
         PARAMS = {
             'action':"query",
-            'exsentences':1,
-            'exlimit':1,
+            'exsentences':2,
+            'exlimit':2,
             'explaintext':True,
             'exsectionformat':'plain',
             'titles': TITLE,

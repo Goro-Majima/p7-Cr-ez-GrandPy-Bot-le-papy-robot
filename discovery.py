@@ -1,11 +1,11 @@
-# import googlemaps
-# import googlemaps.client
-# import json
-# import requests
-# from datetime import datetime
-# from config import *
+import googlemaps
+import googlemaps.client
+import json
+import requests
+from datetime import datetime
+from config import *
 
-# splitted = 'salle de spectacle bataclan'
+# splitted = 'openclassrooms'
 
 # gmaps = googlemaps.Client(key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek")
 
@@ -22,51 +22,31 @@
 # #                                      mode="transit",
 # #                                      departure_time=now)
 
-# lat = geocode_result[0]["geometry"]["location"]["lat"]
-# lon = geocode_result[0]["geometry"]["location"]["lng"]
-# address = geocode_result[0]['formatted_address']
+# # lat = geocode_result[0]["geometry"]["location"]["lat"]
+# # lon = geocode_result[0]["geometry"]["location"]["lng"]
+# # address = geocode_result[0]['formatted_address']
 # #test - print results
-# print (lat, lon, address) 
+# print (geocode_result) 
 
-# """api wikipedia"""
-# import wikipediaapi
+"""autre manière de recuperer coordonées api gmaps"""
+S = requests.Session()
+key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek"
+URL= "https://maps.googleapis.com/maps/api/geocode/json"
 
-# wiki_wiki = wikipediaapi.Wikipedia('en')
+splitted = 'openclassrooms'
 
-# page_py = wiki_wiki.page('tour eiffel')
-# print("Page - Exists: %s" % page_py.exists())
-# # Page - Exists: True
+PARAMS = {
+    'address': splitted,
+    'key': key,
+    'region':'fr'
+}
+R = S.get(url= URL, params=PARAMS)
+DATA = R.json()
+lat = DATA['results'][0]['geometry']['location']['lat']
+lng = DATA['results'][0]['geometry']['location']['lng']
+address = DATA['results'][0]['formatted_address']
+print(lat, lng, address)
 
-# page_missing = wiki_wiki.page('NonExistingPageWithStrangeName')
-# print("Page - Exists: %s" %     page_missing.exists())
-# # Page - Exists: False
-
-# import simplemediawiki 
-# """api mediawiki"""
-# wiki = simplemediawiki.MediaWiki('http://www.mediawiki.org/w/api.php')
-
-# # sample query suggested by Wikidata API sandbox
-# print wiki.call({'action': 'wbsearchentities', 'search': 'abc',
-#                  'language': 'en', 'limit': 10, 'continue': 10})
-
-# from pywikiapi import wikipedia
-# # Connect to English Wikipedia
-# site = wikipedia('en')
-
-# Iterate over all query results as they are returned
-# from the server, handling continuations automatically.
-# (pages whose title begins with "New York-New Jersey")
-
-# """get article from title"""
-# for r in site.query(list='allpages', apprefix='Zidane'):
-#   for page in r.allpages:
-#     print(page.title)
-
-# # Iterate over two pages, getting the page info and the list of links for each of the two pages. Each page will be yielded as a separate result.
-# for page in site.query_pages(titles=['Neymar', 'API'], prop=['links', 'info'], pllimit=10):
-#     print(page.title)
-#     print(', '.join([l.title for l in page.links]))
-#     print()
 
 # # """mediawiki ok"""
 # import requests
@@ -102,6 +82,8 @@
 # except KeyError:
 #     print("Désolé ")
 
+
+#OK FUNCTION
 from grandpy.classes import *
 
 query = input("entre ton lieu: ")
@@ -111,17 +93,18 @@ datagmap = Googlemap(keyword)
 #try to get address and coordinates"""
 try:
     location = datagmap.http_results()
-    diction = {'papyintro': 'Voici le lieu que tu cherches: ', 'address':location[0],\
-        'latitude': location[1], 'longitude': location[2]}
-    infowithoutstory = diction['papyintro'] + diction['address'] + ", ses coordonnées gps: ", \
-    diction['latitude'], diction['longitude']
-    print(infowithoutstory)
+    diction = {'papyintro': "Bien sûr mon poussin! La voici: ", 'address':location[2],\
+        'latitude': location[0], 'longitude': location[1]}
+    infowithoutstory = diction['papyintro'] + diction['address']
+    
     #try to get a story an,d link (tuple) from mediawiki with the keyword
     try:
         mediawikistory = Mediawiki(diction['latitude'], diction['longitude']).historytell()
         diction = {'papyintro': 'Voici le lieu que tu cherches:', 'address':location[0],\
         'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
-        infowithstory = "J'ai une belle histoire à raconter sur ce lieu: " + diction['story'][0]# diction['story'] is a tuple
+        infowithstory = "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? " + diction['story'][0]# diction['story'] is a tuple
+        link = "Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1]
+        print(infowithoutstory)
         print(infowithstory)
         print("")
         print("Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1])
@@ -132,21 +115,21 @@ try:
 except IndexError:
     print("Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =(")
 
-# # mediawiki extract with geolocation
+##mediawiki extract with geolocation
 # import requests
 
 # S = requests.Session()
 
 # URL = "https://fr.wikipedia.org/w/api.php"
 
-# COORDS = '48.8747786|2.3504885'#https://www.coordonnees-gps.fr/
+# COORDS = '48.8748465|2.3504873'#https://www.coordonnees-gps.fr/
 
 # PARAMS = {
 #     'action':"query",
 #     'list':"geosearch",
 #     'gscoord': COORDS,
-#     'gsradius':1000,
-#     'gslimit':1,
+#     'gsradius':10000,
+#     'gslimit':3,
 #     'format':"json"
 # }
 
@@ -154,11 +137,12 @@ except IndexError:
 # DATA = R.json()
 # PLACES = DATA['query']['geosearch']
 # TITLE = PLACES[0]['title']
-
+# for i in PLACES:
+#     print(i['title'])
 # PARAMS = {
 #     'action':"query",
-#     'exsentences':1,
-#     'exlimit':1,
+#     'exsentences':3,
+#     'exlimit':3,
 #     'explaintext':True,
 #     'exsectionformat':'plain',
 #     'titles': TITLE,

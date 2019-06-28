@@ -28,7 +28,7 @@ class Testgooglemaps:
     def test_adress_and_coordinates(self):
         """Check the output"""
         tested_keyword = Googlemap("tour eiffel")
-        mock = 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France', 48.85837009999999, 2.2944813 
+        mock = 48.85837009999999, 2.2944813, 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France'  
         assert tested_keyword.http_results() == mock
 
 class Testmediawiki:
