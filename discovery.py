@@ -4,7 +4,7 @@ import json
 import requests
 from datetime import datetime
 from config import *
-
+from grandpy.Main.main import process_question
 # splitted = 'openclassrooms'
 
 # gmaps = googlemaps.Client(key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek")
@@ -84,37 +84,37 @@ from config import *
 
 
 #OK FUNCTION
-from grandpy.classes import *
+# from grandpy.classes import *
 
-query = input("entre ton lieu: ")
-parsedquery = Parsing(query)
-keyword = parsedquery.returnkeyword()
-datagmap = Googlemap(keyword)
-#try to get address and coordinates"""
-try:
-    location = datagmap.http_results()
-    diction = {'papyintro': "Bien sûr mon poussin! La voici: ", 'address':location[2],\
-        'latitude': location[0], 'longitude': location[1]}
-    addressinfo = diction['papyintro'] + diction['address']
+# query = input("entre ton lieu: ")
+# parsedquery = Parsing(query)
+# keyword = parsedquery.returnkeyword()
+# datagmap = Googlemap(keyword)
+# #try to get address and coordinates"""
+# try:
+#     location = datagmap.http_results()
+#     diction = {'papyintro': "Bien sûr mon poussin! La voici: ", 'address':location[2],\
+#         'latitude': location[0], 'longitude': location[1]}
+#     addressinfo = diction['papyintro'] + diction['address']
     
-    #try to get a story an,d link (tuple) from mediawiki with the keyword
-    try:
-        mediawikistory = Mediawiki(diction['latitude'], diction['longitude']).historytell()
-        diction = {'papyintro': 'Voici le lieu que tu cherches:', 'address':location[0],\
-        'latitude': location[1], 'longitude': location[2], 'story': mediawikistory}
-        infowithstory = "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? " + diction['story'][0]# diction['story'] is a tuple
-        link = "Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1]
-        print(addressinfo)
-        print(infowithstory)
-        print("")
-        print(link)
-    #return negative answer if no story to tell
-    except IndexError:
-        print(infowithoutstory)
-        print("Désolé mon petit mais j'ai tout oublié à propos de ce lieu...")
-#return negative answer if index out of list or no data""" 
-except IndexError:
-    print("Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =(")
+#     #try to get a story an,d link (tuple) from mediawiki with the keyword
+#     try:
+#         mediawikistory = Mediawiki(diction['latitude'], diction['longitude']).historytell()
+#         print(mediawikistory[1])
+#         diction = {'papyintro': 'Voici le lieu que tu cherches:', 'address':location[2],\
+#         'latitude': location[0], 'longitude': location[1], 'story': mediawikistory}
+#         infowithstory = "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? " + diction['story'][0]# diction['story'] is a tuple
+#         link = "Si tu veux en savoir plus clique sur ce lien: " + diction['story'][1]
+#         print(addressinfo)
+#         print(infowithstory)
+#         print("")
+#         print(link)
+#     #return negative answer if no story to tell
+#     except IndexError:
+#         print("Désolé mon petit mais j'ai tout oublié à propos de ce lieu...")
+# #return negative answer if index out of list or no data""" 
+# except IndexError:
+#     print("Désolé mon petit mais je n'ai pas trouvé ce que tu me demandes =(")
 
 ##mediawiki extract with geolocation
 # import requests
@@ -161,3 +161,5 @@ except IndexError:
 #         print('story: ', v['extract'],' lien: ', v['fullurl'])
 # except KeyError:
 #     print("Désolé ")
+
+output = process_question('openclassrooms')
