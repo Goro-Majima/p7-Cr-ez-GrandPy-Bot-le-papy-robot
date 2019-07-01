@@ -4,7 +4,7 @@ import json
 import requests
 from datetime import datetime
 from config import *
-from grandpy.Main.main import process_question
+from grandpy.mainfile import process_question
 # splitted = 'openclassrooms'
 
 # gmaps = googlemaps.Client(key="AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek")

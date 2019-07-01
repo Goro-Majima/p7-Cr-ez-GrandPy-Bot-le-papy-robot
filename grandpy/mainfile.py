@@ -16,12 +16,12 @@ def process_question(question):
             infowithstory = "Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? "
             okstory = "Bien sûr mon poussin! La voici: "
             diction = {'papyintro': okstory, 'address':location[2],\
-            'latitude': location[1], 'longitude': location[2], 'introstory': infowithstory, 'story': mediawikistory[0], 'link': mediawikistory[1]}
+            'latitude': location[0], 'longitude': location[1], 'introstory': infowithstory, 'story': mediawikistory[0], 'link': mediawikistory[1]}
         #return negative answer if no story to tell
         except IndexError:
             notokstory = "Désolé mon petit mais j'ai tout oublié à propos de ce lieu..."
             diction = {'papyintro': notokstory, 'address':location[2],\
-            'latitude': location[1], 'longitude': location[2], 'introstory': '', 'story': '', 'link': ''}
+            'latitude': location[0], 'longitude': location[1], 'introstory': '', 'story': '', 'link': ''}
 
     #return negative answer if index out of list or no data""" 
     except IndexError:
@@ -40,5 +40,5 @@ def process_question(question):
             "story": diction['story'] ,
             "url": diction['link']                   
             }
-    print(jsonfile) 
+    return jsonfile
 
