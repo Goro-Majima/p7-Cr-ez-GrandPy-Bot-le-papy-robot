@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<link rel="icon" href="data:,"><!--remove the error 400 favicon -->
 <head>
   <meta charset= "utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,13 +14,14 @@
   <!--The div element for the map -->
   <div id="map">
     <h3>My Google Maps Demo</h3>
-    alllllloddk
-
   </div>
-  <label for="input">
-    Teste sa réputation !
-    <input id="input" type="text" name="textinput" size="50" placeholder="Tape une phrase en français"/>
-  </label>
+  
+  <form action= "http://127.0.0.1:5000/api" method='POST'>
+    <label for="input">Teste sa réputation !</label>
+    <input id="inputext" type="text" name='usertext' size="50" placeholder="Tape une phrase en français"/>
+    <input type="submit" value="Envoyer">
+    <input type="reset" value="Annuler">
+  </form>
 
 
   <footer>
@@ -29,5 +30,7 @@
       <div class="column"><a href="https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot">Lien github</a></div>
     </div>
   </footer>
+  
+</body>
 </body>
 </html>

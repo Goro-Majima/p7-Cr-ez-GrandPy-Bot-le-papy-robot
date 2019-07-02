@@ -1,11 +1,9 @@
-import re
-import googlemaps
-import googlemaps.client
-import requests
+import googlemaps, googlemaps.client
+import requests, re
 
 from grandpy.stopwords import *
 from config import *
-
+from random import randrange
 
 class Parsing:
     """Parse user sentence into a keyword for an accurate research"""
@@ -95,3 +93,22 @@ class Mediawiki:
         for k, v in PAGES.items():
             return v['extract'], v['fullurl']
 
+class Answer:
+    def addressfound():
+        addressfoundlist = ["Tiens mon enfant, je te montre l'addresse: ", "Aussitot dit, aussitôt trouvé ! ", "C'est bien cet endroit que tu m'as demandé de trouver ?" ]
+        return addressfoundlist[randrange(2)]
+
+    def nothingfound():
+        nothinglist = ["Soit tu ne sais pas écrire ou soit ce n'est pas du français mais ce n'est pas ma faute si je n'ai rien trouvé !! ",\
+         "Pas de réponse!! Concentre toi pour formuler une question basique !", "Je crois avoir la réponse mais ta question n'est pas claire"]
+        return nothinglist[randrange(2)]
+
+    def nomediawiki():
+        nowikilist = ["C'est très rare que je dise cela mais j'ai tout oublié à propose de cet endroit", "C'est pas que je n'ai pas d'histoire à raconter mais je n'ai tout simplement pas envie !",\
+            "Rien à raconter sur cet endroit, trop dangereux je n'ai pas osé y aller."]
+        return nowikilist[randrange(2)]
+
+    def storyfound():
+        wikilist = ["Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ", "Oh je me rappelle de cet endroit, j'ai un tas de choses à raconter alors accroche toi: ",\
+            "Ce lieu ravive des souvenirs les plus enfouis, laisse moi te conter ce que j'en sais"]
+        return wikilist[randrange(2)]
