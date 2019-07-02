@@ -19,11 +19,11 @@ def home():
 @app.route('/api', methods= ['POST'])
 def ajax():
     if request.method == 'POST':
-        text = request.form
+        text = request.form['usertext']
         response = process_question(text)
         if text =='':
             return 'fail'
-        return render_template('home.html',text=text)
+        return render_template('momo.html',text=response)
     
 
     
