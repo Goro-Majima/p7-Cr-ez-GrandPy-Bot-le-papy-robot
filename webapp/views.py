@@ -21,10 +21,8 @@ def ajax():
     if request.method == 'POST':
         text = request.form['usertext']
         response = process_question(text)
-        if text =='':
-            return 'fail'
-        return render_template('momo.html',text=response)
-    
+        # return render_template('momo.html',text=response)
+        return jsonify(response)
 
     
 if __name__ == "__main__":

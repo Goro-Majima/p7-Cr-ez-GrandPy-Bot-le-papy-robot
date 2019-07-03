@@ -4,6 +4,7 @@
 <head>
   <meta charset= "utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="all">
   <title>Grandpybot, le papy que t'as interêt d'écouter... </title>
 </head>
@@ -22,6 +23,8 @@
     <input type="submit" value="Envoyer">
     <input type="reset" value="Annuler">
   </form>
+  <br>
+  <div id='papyanswer'></div>
 
 
   <footer>
@@ -30,7 +33,10 @@
       <div class="column"><a href="https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot">Lien github</a></div>
     </div>
   </footer>
-  
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+  <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
 </body>
 </body>
 </html>
