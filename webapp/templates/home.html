@@ -3,7 +3,12 @@
 <link rel="icon" href="data:,"><!--remove the error 400 favicon -->
 <head>
   <meta charset= "utf-8">
+<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1">  
+=======
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+>>>>>>> af040462b69c8e8471d757ef96822595e71269a9
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="all">
   <title>Grandpybot, le papy que t'as interêt d'écouter... </title>
 </head>
@@ -21,6 +26,8 @@
     <input type="submit" value="Envoyer">
     <input id='reset' type="reset" value="Annuler">
   </form>
+  <br>
+  <div id='papyanswer'></div>
 
 
   <footer>
@@ -29,6 +36,14 @@
       <div class="column"><a href="https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot">Lien github</a></div>
     </div>
   </footer>
+<<<<<<< HEAD
   <script type="text/javascript" src="{{url_for('static', filename='js/home.js')}}"></script> <!--script must be after the core -->
+=======
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+  <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+</body>
+>>>>>>> af040462b69c8e8471d757ef96822595e71269a9
 </body>
 </html>
