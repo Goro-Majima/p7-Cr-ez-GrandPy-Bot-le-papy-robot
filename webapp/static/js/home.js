@@ -1,10 +1,12 @@
-var form = document.querySelector('form')
-var inputext = document.getElementById('inputext')
-var noinput = document.createElement('div')
-
 form.addEventListener('submit', function(e){
-    if(inputext.textContent === '') {
-        noinput.textContent = 'PAS DE QUESTION RENSEIGNEE';
-        form.appendChild(noinput);
+    var form = document.querySelector('form')
+    var inputext = document.getElementById('inputext').value;
+    var newchat = document.createElement('div')
+    if(inputext === '') {
+        newchat.textContent = 'PAS DE QUESTION RENSEIGNEE';
     }
+    else {
+        newchat.textContent = inputext;
+    }
+    form.appendChild(newchat);
 })

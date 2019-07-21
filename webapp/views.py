@@ -3,7 +3,7 @@ from grandpy.mainfile import process_question
 from grandpy.classes import *
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False # to keep tones when returning json file
+app.config['JSON_AS_ASCII'] = False # keep tones when returning json file
 
 @app.route('/')
 @app.route('/home/')
@@ -11,7 +11,7 @@ def home():
     return render_template('home.html')
 
 @app.route('/api', methods= ['POST'])
-def ajax():
+def api_response():
     if request.method == 'POST':
         text = request.form['usertext']
         response = process_question(text)
