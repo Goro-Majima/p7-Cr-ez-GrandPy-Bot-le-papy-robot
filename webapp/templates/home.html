@@ -3,7 +3,8 @@
 <link rel="icon" href="data:,"><!--remove the error 400 favicon -->
 <head>
   <meta charset= "utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="all">
   <title>Grandpybot, le papy que t'as interêt d'écouter... </title>
 </head>
@@ -11,19 +12,24 @@
   <img src="{{ url_for('static', filename='images/old-man.jpg') }}" id='logo'/>
   <h2>Grandpybot, le papy que tu as interêt d'écouter...</h2>
   <h2>Ce globe trotter connait tous les lieux et a toujours une histoire à raconter ! </h2>
-  <!--The div element for the map -->
-  <div id="map">
+  <!--The div element for the chat -->
+  <div id="chat">
   </div>
-  
-  <form id='form' action= "http://127.0.0.1:5000/api" method='POST'>
+  <br>
+  <!--Loading image is displayed only when user submit a question-->
+  <div class="fa-3x" id="loader">
+    <i class="fa fa-spinner fa-spin"></i>		  
+    <span> Concentration...</span>
+ </div>
+
+  <form id='form' action= "http://127.0.0.1:5000/_api" method='POST'>
+  <!-- <form id='form'> -->
     <label for="input">Teste sa réputation !</label>
     <input id="inputext" type="text" name='usertext' size="50" placeholder="Tape une phrase en français"/>
     <input type="submit" value="Envoyer">
     <input id='reset' type="reset" value="Annuler">
   </form>
   <br>
-  <div id='papyanswer'></div>
-
 
   <footer>
     <div class="row">
@@ -31,6 +37,7 @@
       <div class="column"><a href="https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot">Lien github</a></div>
     </div>
   </footer>
+  <script type="text/javascript" src="{{url_for('static', filename='js/ajax.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='js/home.js')}}"></script> <!--script must be after the core -->
 </body>
 </html>

@@ -1,12 +1,18 @@
 form.addEventListener('submit', function(e){
-    var form = document.querySelector('form')
+    var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;
-    var newchat = document.createElement('div')
+    var newchat = document.getElementById('chat');
     if(inputext === '') {
         newchat.textContent = 'PAS DE QUESTION RENSEIGNEE';
     }
     else {
-        newchat.textContent = inputext;
+        loader.style.display = "block";
+        setTimeout( function() {loader.style.display = "none"}, 3000);
+        setTimeout(function() {newchat.textContent = inputext},3000);
+        
     }
-    form.appendChild(newchat);
+    //remove for the view display
+    e.preventDefault();
 })
+
+

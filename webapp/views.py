@@ -10,7 +10,7 @@ app.config['JSON_AS_ASCII'] = False # keep tones when returning json file
 def home():
     return render_template('home.html')
 
-@app.route('/api', methods= ['POST'])
+@app.route('/_api', methods= ['POST'])
 def api_response():
     if request.method == 'POST':
         text = request.form['usertext']

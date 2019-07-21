@@ -16,6 +16,11 @@ body{
     height: auto;
 }
 
+#loader{
+  color: green;
+  display: none;
+}
+
 /*Footer section*/
 /* Create two equal columns that floats next to each other */
 .column {
@@ -37,3 +42,4 @@ body{
     width: 100%;
     }
   } 
+
