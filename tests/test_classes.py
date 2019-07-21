@@ -2,8 +2,8 @@
 from grandpy.classes import Parsing,Googlemap,Mediawiki
 from grandpy import classes
 
-import googlemaps
-import googlemaps.client
+# import googlemaps
+# import googlemaps.client
 import urllib.request
 
 class Testparsing:
@@ -25,21 +25,23 @@ class Testparsing:
 
 class Testgooglemaps:
     """ Check what the function return from the google api """
-    def test_adress_and_coordinates(self):
+    def test_return_adress_and_coordinates(self, monkeypatch):
         """Check the output"""
         tested_keyword = Googlemap("tour eiffel")
-        mock = 48.85837009999999, 2.2944813, 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France'  
-        assert tested_keyword.http_results() == mock
+        results = 48.85837009999999, 2.2944813, 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France'  
+        def mockreturn(request, params):
+            return results
+        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+        assert tested_keyword.http_results() == results
 
 class Testmediawiki:
     """ Check that the function return a short description \
         of a keyword or address from the mediawiki api """
-    def test_text_returned_from_keyword(self):
-        tested_keyword = Mediawiki("Montparnasse")
-        mock2 = "Montparnasse est un toponyme parisien."
-        assert tested_keyword.historytell() == mock2
+    def test_text_returned_from_keyword(self,monkeypatch):
+        tested_keyword = Mediawiki(48.8748465, 2.3504873)
+        results = "L'Hôtel Bourrienne (appelé aussi Hôtel de Bourrienne et Petit Hôtel Bourrienne) est un hôtel particulier du XVIIIe siècle situé au 58 rue d'Hauteville dans le 10e arrondissement de Paris. Propriété privée, il est classé au titre des monuments historiques depuis le 20 juin 1927.", 'https://fr.wikipedia.org/wiki/H%C3%B4tel_Bourrienne' 
+        def mockreturn(request, params):
+            return results
+        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+        assert tested_keyword.historytell() == results
     
-    # def test_nothing_to_tell(self):
-    #     tested_keyword2 = Mediawiki('tour eiffel')
-    #     mock3 = "désolé mon petit mais je n'ai pas réussi à trouver ce lieu"
-    #     assert tested_keyword2.historytell() == mock3

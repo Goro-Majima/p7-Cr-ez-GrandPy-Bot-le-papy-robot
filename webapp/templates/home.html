@@ -3,7 +3,7 @@
 <link rel="icon" href="data:,"><!--remove the error 400 favicon -->
 <head>
   <meta charset= "utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="all">
   <title>Grandpybot, le papy que t'as interêt d'écouter... </title>
 </head>
@@ -13,14 +13,13 @@
   <h2>Ce globe trotter connait tous les lieux et a toujours une histoire à raconter ! </h2>
   <!--The div element for the map -->
   <div id="map">
-    <h3>My Google Maps Demo</h3>
   </div>
   
-  <form action= "http://127.0.0.1:5000/api" method='POST'>
+  <form id='form' action= "http://127.0.0.1:5000/api" method='POST'>
     <label for="input">Teste sa réputation !</label>
     <input id="inputext" type="text" name='usertext' size="50" placeholder="Tape une phrase en français"/>
     <input type="submit" value="Envoyer">
-    <input type="reset" value="Annuler">
+    <input id='reset' type="reset" value="Annuler">
   </form>
 
 
@@ -30,7 +29,6 @@
       <div class="column"><a href="https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot">Lien github</a></div>
     </div>
   </footer>
-  
-</body>
+  <script type="text/javascript" src="{{url_for('static', filename='js/home.js')}}"></script> <!--script must be after the core -->
 </body>
 </html>

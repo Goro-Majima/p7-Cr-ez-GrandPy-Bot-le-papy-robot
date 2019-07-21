@@ -10,21 +10,13 @@ app.config['JSON_AS_ASCII'] = False # to keep tones when returning json file
 def home():
     return render_template('home.html')
 
-# @app.route('/api')
-# def ajax():
-#     text = request.form.get('text')
-#     response = process_question(text)
-#     return jsonify(response)
-
 @app.route('/api', methods= ['POST'])
 def ajax():
     if request.method == 'POST':
         text = request.form['usertext']
         response = process_question(text)
-        if text =='':
-            return 'fail'
-        return render_template('momo.html',text=response)
-    
+        # return render_template('momo.html',text=response)
+        return jsonify(response)
 
     
 if __name__ == "__main__":
