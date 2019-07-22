@@ -15,6 +15,9 @@
   <!--The div element for the chat -->
   <div id="chat">
   </div>
+  <h3>My Google Maps Demo</h3>
+<!--The div element for the map -->
+  <div id="map"></div>
   <br>
   <!--Loading image is displayed only when user submit a question-->
   <div class="fa-3x" id="loader">
@@ -37,6 +40,9 @@
       <div class="column"><a href="https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot">Lien github</a></div>
     </div>
   </footer>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOXqgCFDowOEhWXY_IIUjuupg8nmHkSek&callback=initMap">
+  </script>
   <script type="text/javascript" src="{{url_for('static', filename='js/ajax.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='js/home.js')}}"></script> <!--script must be after the core -->
 </body>
