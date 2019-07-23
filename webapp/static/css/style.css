@@ -2,6 +2,19 @@ body{
     background-color: rgb(255, 247, 141)
 }
 
+h1,h2
+{
+    display: inline-block;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    letter-spacing: 10px;
+    font-size: 1em;
+    font-weight: normal;
+    line-height:  50px;
+    color: #336600;
+	text-align: center;
+	text-shadow: 2px 2px 4px grey;
+}
+
 /* Set the size of the div element that contains the map */
 #map {
   height: 400px;  /* The height is 400 pixels */
@@ -9,13 +22,26 @@ body{
   display: none;
  }
 
-#logo{
-    width: 15%;
+#logo
+{
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width: 10%;
     height: auto;
+    border-radius: 50%;
 }
 
 #loader{
-  color: green;
+  display: inline-block;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  letter-spacing: 10px;
+  font-size: 1em;
+  font-weight: normal;
+  line-height:  50px;
+  color: #336600;
+	text-align: center;
+	text-shadow: 2px 2px 4px grey;
   display: none;
 }
 
@@ -41,3 +67,45 @@ body{
     }
   } 
 
+/* Chat containers */
+#question {
+  border: 2px solid #dedede;
+  background-color: grey;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px 0;
+  display: none;
+}
+
+#address, #story {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px 0;
+  display: none;
+}
+
+
+/* Clear floats */
+#address::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+#story img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+#story img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}

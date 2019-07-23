@@ -6,18 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="all">
+  <link rel="icon" type="image/ico" href="{{ url_for('static', filename='images/old-man.jpg') }}" />
   <title>Grandpybot, le papy que t'as interêt d'écouter... </title>
 </head>
 <body>
-  <img src="{{ url_for('static', filename='images/old-man.jpg') }}" id='logo'/>
-  <h2>Grandpybot, le papy que tu as interêt d'écouter...</h2>
-  <h2>Ce globe trotter connait tous les lieux et a toujours une histoire à raconter ! </h2>
-  <!--The div element for the chat -->
-  <div id="chat">
-  </div>
-  <h3>My Google Maps Demo</h3>
-<!--The div element for the map -->
-  <div id="map"></div>
+  <header>
+      <img src="{{ url_for('static', filename='images/old-man.jpg') }}" id='logo'/>
+      <h1>Grandpybot, le papy qui croit tout savoir...</h1>
+      
+  </header>
+  
+  <section id='chat'>
+      <h2>Teste les conaissances de ce dieu vivant: </h2>
+      <!--The div element for the chat -->
+      <div id="question"></div>
+      <div id="address">
+          <img src="{{ url_for('static', filename='images/old-man.jpg') }}" alt="Avatar" class="right"/>
+          <p></p>
+      </div>
+      
+      <!--The div element for the map -->
+      <div id="map">
+      </div>
+      <br>
+      
+      <div id="story">
+        <img src="{{ url_for('static', filename='images/old-man.jpg') }}" alt="Avatar" class="right"/>
+        <p></p>
+      </div>
+  </section>
+  
   <br>
   <!--Loading image is displayed only when user submit a question-->
   <div class="fa-3x" id="loader">
@@ -27,10 +45,10 @@
 
   <form id='form' action= "http://127.0.0.1:5000/_api" method='POST'>
   <!-- <form id='form'> -->
-    <label for="input">Teste sa réputation !</label>
+    <label for="input">Pose ta question ici: </label>
     <input id="inputext" type="text" name='usertext' size="50" placeholder="Tape une phrase en français"/>
     <input type="submit" value="Envoyer">
-    <input id='reset' type="reset" value="Annuler">
+    <input id='reset' type="reset" value="Effacer">
   </form>
   <br>
 
