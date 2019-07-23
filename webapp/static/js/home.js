@@ -24,19 +24,22 @@ form.addEventListener('submit', function(e){
     var gmap = document.getElementById('map');
     if(inputext !== '') {
         loader.style.display = "block";
-        setTimeout(function() {loader.style.display = "none"}, 3000);
-        setTimeout(function() {questionSection.style.display= 'block'}, 3000);
-        setTimeout(function() {questionSection.textContent = inputext}, 3000);
+        questionSection.style.display= 'block';
+        questionSection.textContent = inputext
+        setTimeout(function() {loader.style.display = "none"}, 3000);        
         setTimeout(function() {addressSection.style.display= 'block'}, 3000);
+
+        //Display the response from the view to the different section 
+        ajaxGet("http://127.0.0.1:5000/_api", afficher);
         setTimeout(function() {addressSection.textContent = 'adress section'}, 3000);
         setTimeout(function() {storySection.style.display= 'block'}, 3000);
-        setTimeout(function() {storySection.textContent = 'story section'}, 3000);
+        setTimeout(function() {storySection.textContent = "story section:Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la"}, 3000);
         setTimeout(function() {gmap.style.display = 'block'}, 3000);
         
-        // ajaxGet("http://127.0.0.1:5000/_api", afficher);
     }
     else {
-        chatsection.textContent = 'PAS DE QUESTION RENSEIGNEE';
+        questionSection.style.display= 'block';
+        questionSection.textContent = 'PAS DE QUESTION RENSEIGNEE';
     }    
 })
 

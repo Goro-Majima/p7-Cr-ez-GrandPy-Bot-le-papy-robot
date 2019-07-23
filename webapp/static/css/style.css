@@ -1,4 +1,7 @@
 body{
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
   background-image: linear-gradient(to bottom right,#ADA996,#F2F2F2,#EAEAEA);
 }
 
@@ -44,28 +47,6 @@ h1,h2
 	text-shadow: 2px 2px 4px grey;
   display: none;
 }
-
-/*Footer section*/
-/* Create two equal columns that floats next to each other */
-.column {
-    float: right;
-    width: 50%;
-    padding: 10px;
-  }
-  
-  /* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-.column {
-    width: 100%;
-    }
-  } 
 
 /* Chat containers */
 #question {
@@ -113,13 +94,17 @@ h1,h2
 .footer-distributed{
 	background-color: #292c2f;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-	box-sizing: border-box;
-	width: 100%;
-	text-align: left;
-	font: normal 16px sans-serif;
+  box-sizing: border-box;
+  text-align: left;
+  font: normal 16px sans-serif;
 
+  width: 100%;
 	padding: 45px 50px;
-	margin-top: 80px;
+  margin-top: 80px;
+  /* position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; */
 }
 
 .footer-distributed .footer-left p{
