@@ -11,19 +11,19 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/_api', methods= ['GET','POST'])
-def api_response():
-    if request.method == 'POST':
-        text = request.form['usertext']
-        response = process_question(text)
-        # return render_template('momo.html',text=response)
-        return jsonify(response)
-
-# @app.route('/_api', methods= ['GET'])
+# @app.route('/_api', methods= ['GET','POST'])
 # def api_response():
-#     text = request.args.get('usertext')
-#     response = process_question(text)
-#     return jsonify(response)
+# 	if request.method == 'POST':
+# 		text = request.form['usertext']
+# 		response = process_question(text)
+# 		# return render_template('momo.html',text=response)
+# 		return jsonify(response)
+
+@app.route('/_api', methods= ['GET'])
+def api_response():
+    text = request.args.get('usertext','openclassrooms')
+    response = process_question(text)
+    return jsonify(response)
     
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

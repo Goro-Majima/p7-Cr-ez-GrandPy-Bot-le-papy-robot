@@ -95,20 +95,20 @@ class Mediawiki:
 
 class Answer:
     def addressfound():
-        addressfoundlist = ["Tiens mon enfant, je te montre l'addresse: ", "Aussitot dit, aussitôt trouvé ! ", "C'est bien cet endroit que tu m'as demandé de trouver ?" ]
-        return addressfoundlist[randrange(2)]
+        addressfoundlist = ["Tiens mon enfant, je te montre l'addresse: ", "Aussitot dit, aussitôt trouvé ! ", "C'est bien cet endroit que tu m'as demandé de trouver ?","Je pense que tu cherches cette place: " ]
+        return addressfoundlist[randrange(4)]
 
     def nothingfound():
         nothinglist = ["Soit tu ne sais pas écrire ou soit ce n'est pas du français mais ce n'est pas ma faute si je n'ai rien trouvé !! ",\
-         "Pas de réponse!! Concentre toi pour formuler une question basique !", "Je crois avoir la réponse mais ta question n'est pas claire"]
-        return nothinglist[randrange(2)]
+         "Pas de réponse!! Concentre toi pour formuler une question basique !", "Je crois avoir la réponse mais ta question n'est pas claire", "Plus de précision je t'en prie"]
+        return nothinglist[randrange(4)]
 
     def nomediawiki():
         nowikilist = ["C'est très rare que je dise cela mais j'ai tout oublié à propose de cet endroit", "C'est pas que je n'ai pas d'histoire à raconter mais je n'ai tout simplement pas envie !",\
             "Rien à raconter sur cet endroit, trop dangereux je n'ai pas osé y aller."]
-        return nowikilist[randrange(2)]
+        return nowikilist[randrange(4)]
 
     def storyfound():
         wikilist = ["Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ", "Oh je me rappelle de cet endroit, j'ai un tas de choses à raconter alors accroche toi: ",\
-            "Ce lieu ravive des souvenirs les plus enfouis, laisse moi te conter ce que j'en sais"]
-        return wikilist[randrange(2)]
+            "Ce lieu ravive des souvenirs les plus enfouis, laisse moi te conter ce que j'en sais", "Je serai heureux de t'y emmener mais en attendant tu vas écouter ma story"]
+        return wikilist[randrange(4)]
