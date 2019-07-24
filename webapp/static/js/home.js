@@ -35,12 +35,18 @@ form.addEventListener('submit', function(e){
             storyreturn = jsonreponse["introstory"] + ' ' + jsonreponse["story"]
             latitude = jsonreponse['gps']['lat']
             longitude = jsonreponse['gps']['lng']
-            setTimeout(function() {addressSection.style.display= 'block'}, 3000);
-            setTimeout(function() {addressSection.textContent = addressreturn}, 3000);   
-            setTimeout(function() {storySection.style.display= 'block'}, 3000);
-            setTimeout(function() {storySection.textContent = storyreturn}, 3000);
-            initMap(latitude, longitude)
-            setTimeout(function() {gmap.style.display = 'block'}, 3000);
+            if (jsonreponse['address'] === ''){
+                setTimeout(function() {addressSection.style.display= 'block'}, 3000);
+                setTimeout(function() {addressSection.textContent = addressreturn}, 3000); 
+            }else{                
+                setTimeout(function() {addressSection.style.display= 'block'}, 3000);
+                setTimeout(function() {addressSection.textContent = addressreturn}, 3000);   
+                setTimeout(function() {storySection.style.display= 'block'}, 3000);
+                setTimeout(function() {storySection.textContent = storyreturn}, 3000);
+                initMap(latitude, longitude)
+                setTimeout(function() {gmap.style.display = 'block'}, 3000);
+            }
+            
         })        
     }
     else {

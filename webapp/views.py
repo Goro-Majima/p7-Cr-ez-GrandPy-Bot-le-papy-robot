@@ -19,9 +19,9 @@ def home():
 # 		# return render_template('momo.html',text=response)
 # 		return jsonify(response)
 
-@app.route('/_api', methods= ['GET'])
+@app.route('/_api/', methods= ['GET','POST'])
 def api_response():
-    text = request.args.get('usertext','openclassrooms')
+    text = request.args.get('usertext')
     response = process_question(text)
     return jsonify(response)
     

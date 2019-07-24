@@ -110,5 +110,5 @@ class Answer:
 
     def storyfound():
         wikilist = ["Mais t'ai-je déjà raconté l'histoire de ce quartier qui m'a vu en culottes courtes ? ", "Oh je me rappelle de cet endroit, j'ai un tas de choses à raconter alors accroche toi: ",\
-            "Ce lieu ravive des souvenirs les plus enfouis, laisse moi te conter ce que j'en sais", "Je serai heureux de t'y emmener mais en attendant tu vas écouter ma story"]
+            "Ce lieu ravive des souvenirs les plus enfouis, laisse moi te conter ce que j'en sais", "Je serai heureux de t'y emmener mais en attendant tu vas écouter ma story:"]
         return wikilist[randrange(4)]
