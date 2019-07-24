@@ -15,7 +15,7 @@ function afficher(response) {
 
 form.addEventListener('submit', function(e){
     //remove for the view display
-    e.preventDefault();
+    // e.preventDefault();
     var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;
     var questionSection = document.getElementById('question');
