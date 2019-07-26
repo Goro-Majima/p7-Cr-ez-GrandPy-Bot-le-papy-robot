@@ -22,7 +22,15 @@ h1,h2
 #map {
   height: 400px;  /* The height is 400 pixels */
   width: 100%;  /* The width is the width of the web page */
-  border-radius: 10%;
+  border-radius: 8%;
+  border: 2px solid #dedede;
+  display: none;
+ }
+
+ .map {
+  height: 400px;  /* The height is 400 pixels */
+  width: 100%;  /* The width is the width of the web page */
+  border-radius: 8%;
   border: 2px solid #dedede;
   display: none;
  }
@@ -53,11 +61,12 @@ h1,h2
 /* Chat containers */
 #question {
   border: 2px solid #dedede;
-  background-color: grey;
+  background-color: rgb(168, 211, 209);
   border-radius: 20px;
   padding: 10px;
   margin: 10px 0;
   display: none;
+  text-align: right;
 }
 
 #address, #story {

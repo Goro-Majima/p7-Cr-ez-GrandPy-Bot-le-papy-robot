@@ -25,18 +25,16 @@ form.addEventListener('submit', function(e){
     // set attribute in order to get the css
     newquestionSection.setAttribute("id", "question")    
     newaddressSection.setAttribute("id", "address")  
-    newgmapSection.setAttribute("id", "map")    
+    newgmapSection.setAttribute("id", "map")
+    newgmapSection.classList.add("map")
     newstorySection.setAttribute("id", "story")
     //get the chat section
     var currentDiv = document.getElementById('chat')
+
     currentDiv.appendChild(newquestionSection)
     currentDiv.appendChild(newaddressSection)
     currentDiv.appendChild(newgmapSection)
     currentDiv.appendChild(newstorySection)
-    
-    var avatar = document.createElement('img')
-    avatar.setAttribute('src', "static/images/old-man.jpg")
-    
 
     var addressreturn = ''
     var storyreturn = ''
@@ -57,17 +55,15 @@ form.addEventListener('submit', function(e){
             if (jsonreponse['address'] === ''){
                 setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
                 setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000); 
-                newaddressSection.appendChild(avatar)
             }else{                
                 setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
                 setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000);
                 setTimeout(function() {newgmapSection.style.display = 'block'}, 1000);
                 initMap(latitude, longitude)
+                document.getElementById('map').setAttribute('id','map1');
                 setTimeout(function() {newstorySection.style.display= 'block'}, 1000);
-                setTimeout(function() {newstorySection.textContent = storyreturn}, 1000);
-                
-            }
-            
+                setTimeout(function() {newstorySection.textContent = storyreturn}, 1000);                
+            }            
         })        
     }
     else {
