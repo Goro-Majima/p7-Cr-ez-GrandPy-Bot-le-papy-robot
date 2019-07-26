@@ -19,22 +19,8 @@
   
   <section class="col-sm-3 col-sm-offset-4 frame" id='chat' >
       <div id="intro">
+        <img src="{{ url_for('static', filename='images/old-man.jpg') }}" alt="Avatar" class="avatar">
         Salut toi demande poliment ton lieu et je m'occupe de tout
-      </div>
-      <!--The div element for the chat -->
-      <div id="question"></div>
-      <div id="address">
-  
-          <p></p>
-      </div>
-      
-      <!--The div element for the map -->
-      <div id="map">
-      </div>
-      <br>
-      
-      <div id="story">      
-        <p></p>
       </div>
   </section>
   
@@ -48,7 +34,7 @@
   <!-- <form id='form' action= 'http://127.0.0.1:5000/_api' method='POST'> -->
   <form id='form' method='GET'>
     <label style= "font-family: 'Trebuchet MS', Arial, sans-serif" for="input">Pose ta question ici: </label>
-    <input id="inputext" type="text" name='usertext' size="50" placeholder="Tape une phrase en français">
+    <input id="inputext" type="text" name='usertext' size= '40px' placeholder="Tape une phrase en français">
     <input id="blue" type="submit" value="Envoyer">
     <input id="red"id='reset' type="reset" value="Effacer">
   </form>

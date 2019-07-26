@@ -22,6 +22,8 @@ h1,h2
 #map {
   height: 400px;  /* The height is 400 pixels */
   width: 100%;  /* The width is the width of the web page */
+  border-radius: 10%;
+  border: 2px solid #dedede;
   display: none;
  }
 
@@ -178,7 +180,7 @@ h1,h2
 
 #chat{
   margin: auto;
-  width: 50%;
+  width: 60%;
   border: 3px solid #fff8f8;
   padding: 10px;
   background-color: #fff8f8;
@@ -187,7 +189,7 @@ h1,h2
 
 #form{
   margin: auto;
-  width: 50%;
+  width: 60%;
   border: 3px solid #fff8f8;
   padding: 10px;
   background-color: #fff8f8;
@@ -208,13 +210,9 @@ h1,h2
     box-shadow: inset 0 1px 0 #80B0FB;
 }
 
-input{
-  color: #444444;
-    background: #F3F3F3;
-    border: 1px #DADADA solid;
-    padding: 5px 10px;
-    border-radius: 2px;
-    font-weight: bold;
-    font-size: 9pt;
-    outline: none;
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

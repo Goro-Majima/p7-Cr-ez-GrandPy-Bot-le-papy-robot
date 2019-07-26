@@ -13,21 +13,39 @@ function initMap(latitude, longitude) {
 form.addEventListener('submit', function(e){
     //remove for the view display to /_api
     e.preventDefault();
+    var intro = document.getElementById('intro')
+    
     var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;
-    console.log(inputext)
-    var questionSection = document.getElementById('question');
-    var addressSection = document.getElementById('address');
-    var storySection = document.getElementById('story');
-    var gmap = document.getElementById('map');
+    //create elements in order to parse the answer 
+    var newquestionSection = document.createElement("div");
+    var newaddressSection = document.createElement("div")
+    var newgmapSection = document.createElement("div")
+    var newstorySection = document.createElement("div")
+    // set attribute in order to get the css
+    newquestionSection.setAttribute("id", "question")    
+    newaddressSection.setAttribute("id", "address")  
+    newgmapSection.setAttribute("id", "map")    
+    newstorySection.setAttribute("id", "story")
+    //get the chat section
+    var currentDiv = document.getElementById('chat')
+    currentDiv.appendChild(newquestionSection)
+    currentDiv.appendChild(newaddressSection)
+    currentDiv.appendChild(newgmapSection)
+    currentDiv.appendChild(newstorySection)
+    
+    var avatar = document.createElement('img')
+    avatar.setAttribute('src', "static/images/old-man.jpg")
+    
+
     var addressreturn = ''
     var storyreturn = ''
     var longitude = ''
     var latitude = ''
     if(inputext !== '') {
         loader.style.display = "block";
-        questionSection.style.display= 'block';
-        questionSection.textContent = inputext
+        newquestionSection.style.display= 'block';
+        newquestionSection.textContent = inputext
         setTimeout(function() {loader.style.display = "none"}, 3000);  
          //Display the response from the view to the different section       
         ajaxGet('http://127.0.0.1:5000/_api', function(reponse){
@@ -37,22 +55,24 @@ form.addEventListener('submit', function(e){
             latitude = jsonreponse['gps']['lat']
             longitude = jsonreponse['gps']['lng']
             if (jsonreponse['address'] === ''){
-                setTimeout(function() {addressSection.style.display= 'block'}, 3000);
-                setTimeout(function() {addressSection.textContent = addressreturn}, 3000); 
+                setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
+                setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000); 
+                newaddressSection.appendChild(avatar)
             }else{                
-                setTimeout(function() {addressSection.style.display= 'block'}, 3000);
-                setTimeout(function() {addressSection.textContent = addressreturn}, 3000);   
-                setTimeout(function() {storySection.style.display= 'block'}, 3000);
-                setTimeout(function() {storySection.textContent = storyreturn}, 3000);
+                setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
+                setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000);
+                setTimeout(function() {newgmapSection.style.display = 'block'}, 1000);
                 initMap(latitude, longitude)
-                setTimeout(function() {gmap.style.display = 'block'}, 3000);
+                setTimeout(function() {newstorySection.style.display= 'block'}, 1000);
+                setTimeout(function() {newstorySection.textContent = storyreturn}, 1000);
+                
             }
             
         })        
     }
     else {
-        questionSection.style.display= 'block';
-        questionSection.textContent = 'PAS DE QUESTION RENSEIGNEE';
+        newquestionSection.style.display= 'block';
+        newquestionSection.textContent = 'PAS DE QUESTION RENSEIGNEE';
     }    
 })
 
