@@ -11,7 +11,7 @@ function initMap(latitude, longitude) {
 
 
 form.addEventListener('submit', function(e){
-    //remove for the view display
+    //remove for the view display to /_api
     e.preventDefault();
     var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;

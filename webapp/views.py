@@ -21,7 +21,7 @@ def home():
 
 @app.route('/_api/', methods= ['GET','POST'])
 def api_response():
-    text = request.args.get('usertext')
+    text = request.args.get('usertext','disney village')
     response = process_question(text)
     return jsonify(response)
     

@@ -169,3 +169,19 @@ h1,h2
 		line-height: 1.8;
 	}
 }
+
+#chat{
+  margin: auto;
+  width: 50%;
+  border: 3px solid #b89999;
+  padding: 10px;
+  background-color: #b89999
+}
+
+#form{
+  margin: auto;
+  width: 50%;
+  border: 3px solid #b89999;
+  padding: 10px;
+  background-color: #b89999
+}
