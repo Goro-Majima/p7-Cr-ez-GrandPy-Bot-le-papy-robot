@@ -15,6 +15,7 @@ form.addEventListener('submit', function(e){
     e.preventDefault();
     var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;
+    console.log(inputext)
     var questionSection = document.getElementById('question');
     var addressSection = document.getElementById('address');
     var storySection = document.getElementById('story');
