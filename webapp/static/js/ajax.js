@@ -22,6 +22,7 @@ function ajaxGet(url, callback) {
 function ajaxPost(url, data, callback) {
     var req = new XMLHttpRequest();
     req.open("POST", url);
+    req.setRequestHeader('Access-Control-Allow-Origin','*');
     req.addEventListener("load", function () {
         if (req.status >= 200 && req.status < 400) {
             // Appelle la fonction callback en lui passant la réponse de la requête
