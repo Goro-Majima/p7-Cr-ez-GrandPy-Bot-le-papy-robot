@@ -12,14 +12,12 @@ function initMap(latitude, longitude) {
 
 form.addEventListener('submit', function(e){
     //remove for the view display to /_api
-    e.preventDefault();
-    var intro = document.getElementById('intro')    
+    e.preventDefault();  
     var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;
     //create elements in order to parse the answer 
     var question = new FormData();
     question.append("usertext", inputext);
-    console.log(question);
     var newquestionSection = document.createElement("div");
     var newaddressSection = document.createElement("div");
     var newgmapSection = document.createElement("div");
