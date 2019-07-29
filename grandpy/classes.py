@@ -100,7 +100,7 @@ class Answer:
     def addressfound():
         """return a random message if address is found"""
         addressfoundlist = ["Tiens mon enfant, je te montre l'addresse: ",\
-            "Aussitot dit, aussitô   t trouvé ! ", \
+            "Aussitot dit, aussitôt trouvé ! ", \
             "C'est bien cet endroit que tu m'as demandé de trouver ?", \
             "Je pense que tu cherches cette place: "]
         return addressfoundlist[randrange(4)]
