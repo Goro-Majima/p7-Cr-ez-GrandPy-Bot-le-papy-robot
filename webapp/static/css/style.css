@@ -205,6 +205,10 @@ h1,h2
   border-radius: 20px;
 }
 
+#inputext{
+  display: table-cell; 
+}
+
 #blue{
   color: white;
     background: #4C8FFB;
