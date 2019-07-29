@@ -206,7 +206,9 @@ h1,h2
 }
 
 #inputext{
-  display: table-cell; 
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
 }
 
 #blue{
