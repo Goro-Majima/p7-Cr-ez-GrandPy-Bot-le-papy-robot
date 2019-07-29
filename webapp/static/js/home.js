@@ -17,6 +17,9 @@ form.addEventListener('submit', function(e){
     var loader = document.getElementById( "loader" )
     var inputext = document.getElementById('inputext').value;
     //create elements in order to parse the answer 
+    var question = new FormData();
+    question.append("usertext", inputext);
+    console.log(question);
     var newquestionSection = document.createElement("div");
     var newaddressSection = document.createElement("div");
     var newgmapSection = document.createElement("div");
@@ -45,11 +48,7 @@ form.addEventListener('submit', function(e){
         newquestionSection.textContent = inputext;
         setTimeout(function() {loader.style.display = "none"}, 3000);  
          //Display the response from the view to the different section  
-         var data = {
-            dialogContent : inputext
-        }
-        console.log(data)
-        ajaxGet('http://127.0.0.1:5000/_api', function(reponse){
+        ajaxPost('http://127.0.0.1:5000/_api',question, function(reponse){
             jsonreponse = JSON.parse(reponse);
             addressreturn = jsonreponse['papyanswer']+ ' ' + jsonreponse['address'];
             storyreturn = jsonreponse["introstory"] + ' ' + jsonreponse["story"];
