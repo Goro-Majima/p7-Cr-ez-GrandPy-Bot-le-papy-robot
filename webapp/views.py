@@ -6,6 +6,7 @@ from grandpy.mainfile import process_question
 
 
 app = Flask(__name__)
+CORS(app)
 app.config['JSON_AS_ASCII'] = False # keep tones when returning json file
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -22,9 +23,7 @@ def api_response():
     text = request.form['usertext']
     response = process_question(text)
         # return render_template('momo.html',text=response)
-    responsecors =jsonify(response)
-    responsecors.headers.add("Access-Control-Allow-Origin", "*")
-    return responsecors
+    return jsonify(response)
 
 # @app.route('/_api/', methods= ['GET'])
 # def api_response():
