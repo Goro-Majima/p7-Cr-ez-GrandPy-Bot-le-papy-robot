@@ -64,10 +64,6 @@ form.addEventListener('submit', function(e){
                 setTimeout(function() {newstorySection.style.display= 'block'}, 1000);
                 setTimeout(function() {newstorySection.textContent = storyreturn}, 1000);                
             } else{
-                // var newstorySection = document.createElement("div");
-                // newgmapSection.classList.add("map");
-                // newstorySection.setAttribute("id", "story");  
-                // currentDiv.appendChild(newstorySection);
                 setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
                 setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000);
                 var newgmapSection = document.createElement("div");
