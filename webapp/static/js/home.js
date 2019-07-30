@@ -9,6 +9,11 @@ function initMap(latitude, longitude) {
     var marker = new google.maps.Marker({position: location, map: map});
   }
 
+  function initmapdiv(){
+    var newgmapSection = document.createElement("div");
+    newgmapSection.setAttribute("id", "map");
+    newgmapSection.classList.add("map");
+  }
 
 form.addEventListener('submit', function(e){
     //remove for the view display to /_api
@@ -42,7 +47,6 @@ form.addEventListener('submit', function(e){
             jsonreponse = JSON.parse(reponse);
             addressreturn = jsonreponse['papyanswer']+ ' ' + jsonreponse['address'];
             storyreturn = jsonreponse["introstory"] + ' ' + jsonreponse["story"];
-            console.log(jsonreponse['story'])
             latitude = jsonreponse['gps']['lat'];
             longitude = jsonreponse['gps']['lng'];
             if (jsonreponse['address'] === ''){
@@ -73,8 +77,6 @@ form.addEventListener('submit', function(e){
                 setTimeout(function() {newgmapSection.style.display = 'block'}, 1000);
                 initMap(latitude, longitude);
                 document.getElementById('map').setAttribute('id','map1');
-                console.log('pas de story')
-                console.log(jsonreponse['address'])
             }
         })        
     }

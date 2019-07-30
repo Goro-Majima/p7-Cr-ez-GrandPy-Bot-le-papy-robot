@@ -22,16 +22,5 @@ def api_response():
     """send response to the server at url _api"""
     text = request.form['usertext']
     response = process_question(text)
-        # return render_template('momo.html',text=response)
     return jsonify(response)
 
-# @app.route('/_api/', methods= ['GET'])
-# def api_response():
-#     text = request.args.get('usertext')
-#     print(text)
-#     print(6)
-#     response = process_question(text)
-#     return jsonify(response)
-
-# if __name__ == "__main__":
-#     app.run(debug=True, port=5000)
