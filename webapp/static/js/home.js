@@ -20,21 +20,13 @@ form.addEventListener('submit', function(e){
     question.append("usertext", inputext);
     var newquestionSection = document.createElement("div");
     var newaddressSection = document.createElement("div");
-    var newgmapSection = document.createElement("div");
-    var newstorySection = document.createElement("div");
     // set attribute in order to get the css
     newquestionSection.setAttribute("id", "question"); 
     newaddressSection.setAttribute("id", "address");
-    newgmapSection.setAttribute("id", "map");
-    newgmapSection.classList.add("map");
-    newstorySection.setAttribute("id", "story");
     //get the chat section
     var currentDiv = document.getElementById('chat');
-
     currentDiv.appendChild(newquestionSection);
     currentDiv.appendChild(newaddressSection);
-    currentDiv.appendChild(newgmapSection);
-    currentDiv.appendChild(newstorySection);
 
     var addressreturn = '';
     var storyreturn = '';
@@ -50,12 +42,20 @@ form.addEventListener('submit', function(e){
             jsonreponse = JSON.parse(reponse);
             addressreturn = jsonreponse['papyanswer']+ ' ' + jsonreponse['address'];
             storyreturn = jsonreponse["introstory"] + ' ' + jsonreponse["story"];
+            console.log(jsonreponse['story'])
             latitude = jsonreponse['gps']['lat'];
             longitude = jsonreponse['gps']['lng'];
             if (jsonreponse['address'] === ''){
                 setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
                 setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000); 
-            }else{                
+            }else if(jsonreponse['story']!==''){
+                var newgmapSection = document.createElement("div");
+                var newstorySection = document.createElement("div");
+                newgmapSection.setAttribute("id", "map");
+                newgmapSection.classList.add("map");
+                newstorySection.setAttribute("id", "story");  
+                currentDiv.appendChild(newgmapSection);
+                currentDiv.appendChild(newstorySection);
                 setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
                 setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000);
                 setTimeout(function() {newgmapSection.style.display = 'block'}, 1000);
@@ -63,7 +63,23 @@ form.addEventListener('submit', function(e){
                 document.getElementById('map').setAttribute('id','map1');
                 setTimeout(function() {newstorySection.style.display= 'block'}, 1000);
                 setTimeout(function() {newstorySection.textContent = storyreturn}, 1000);                
-            }            
+            } else{
+                // var newstorySection = document.createElement("div");
+                // newgmapSection.classList.add("map");
+                // newstorySection.setAttribute("id", "story");  
+                // currentDiv.appendChild(newstorySection);
+                setTimeout(function() {newaddressSection.style.display= 'block'}, 1000);
+                setTimeout(function() {newaddressSection.textContent = addressreturn}, 1000);
+                var newgmapSection = document.createElement("div");
+                newgmapSection.setAttribute("id", "map");
+                newgmapSection.classList.add("map");
+                currentDiv.appendChild(newgmapSection);
+                setTimeout(function() {newgmapSection.style.display = 'block'}, 1000);
+                initMap(latitude, longitude);
+                document.getElementById('map').setAttribute('id','map1');
+                console.log('pas de story')
+                console.log(jsonreponse['address'])
+            }
         })        
     }
     else {
