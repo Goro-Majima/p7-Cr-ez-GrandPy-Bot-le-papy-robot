@@ -17,10 +17,9 @@ def home():
     return render_template('home.html')
 
 @app.route('/_api', methods=['POST'])
-@cross_origin(origin='http://127.0.0.1:5000/_api',headers=['Content-Type','Authorization'])
+@cross_origin(origin='http://127.0.0.1:5000/_api', headers=['Content-Type', 'Authorization'])
 def api_response():
     """send response to the server at url _api"""
     text = request.form['usertext']
     response = process_question(text)
     return jsonify(response)
-

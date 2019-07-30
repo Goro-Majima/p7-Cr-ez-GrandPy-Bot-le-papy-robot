@@ -1,8 +1,8 @@
+"""file containing the function, helping to make the file views.py shorter"""
 from grandpy.classes import Parsing, Googlemap, Mediawiki, Answer
-from random import randrange
 
 def process_question(question):
-    
+    """function gathering parser,googlemap and wiki api. Called in views.py"""
     parsedquery = Parsing(question)
     keyword = parsedquery.returnkeyword()
     datagmap = Googlemap(keyword)
@@ -16,37 +16,48 @@ def process_question(question):
         try:
             mediawikistory = Mediawiki(diction['latitude'], diction['longitude']).historytell()
             infowithstory = Answer.storyfound()
-            diction = {'papyintro': papytext, 'address':location[2],\
-            'latitude': location[0], 'longitude': location[1], 'introstory': infowithstory, 'story': mediawikistory[0], 'link': mediawikistory[1]}
+            diction = {
+                'papyintro': papytext,
+                'address':location[2],\
+                'latitude': location[0],
+                'longitude': location[1],
+                'introstory': infowithstory,
+                'story': mediawikistory[0],
+                'link': mediawikistory[1]
+            }
         #return negative answer if no story to tell
         except IndexError:
             notokstory = Answer.nomediawiki()
-            diction = {'papyintro': notokstory, 
+            diction = {
+                'papyintro': notokstory,
                 'address':location[2],\
-                'latitude': location[0], 
-                'longitude': location[1], 
-                'introstory': '', 
-                'story': '', 
+                'latitude': location[0],
+                'longitude': location[1],
+                'introstory': '',
+                'story': '',
                 'link': ''
                 }
 
-    #return negative answer if index out of list or no data""" 
+    #return negative answer if index out of list or no data"""
     except IndexError:
         nothingtotell = Answer.nothingfound()
-        diction = { 'papyintro': nothingtotell, 
-                    'address':'',
-                    'latitude': '', 
-                    'longitude': '', 
-                    'introstory': '', 
-                    'story': '', 
-                    'link': ''}
-    jsonfile = {"papyanswer": diction['papyintro'],
-            "address": diction['address'], 
-            "gps":{'lat': diction['latitude'],
-                'lng': diction['longitude']},
-            "introstory": diction['introstory'],
-            "story": diction['story'] ,
-            "url": diction['link']                   
+        diction = {
+            'papyintro': nothingtotell,
+            'address':'',
+            'latitude': '',
+            'longitude': '',
+            'introstory': '',
+            'story': '',
+            'link': ''
             }
-    return jsonfile
 
+    jsonfile = {
+        "papyanswer": diction['papyintro'],
+        "address": diction['address'],
+        "gps":{'lat': diction['latitude'],
+               'lng': diction['longitude']},
+        "introstory": diction['introstory'],
+        "story": diction['story'],
+        "url": diction['link']
+        }
+    return jsonfile
