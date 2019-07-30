@@ -38,7 +38,7 @@ form.addEventListener('submit', function(e){
         newquestionSection.textContent = inputext;
         setTimeout(function() {loader.style.display = "none"}, 3000);  
          //Display the response from the view to the different section  
-        ajaxPost('http://127.0.0.1:5000/_api',question, function(reponse){
+        ajaxPost('/_api',question, function(reponse){
             jsonreponse = JSON.parse(reponse);
             addressreturn = jsonreponse['papyanswer']+ ' ' + jsonreponse['address'];
             storyreturn = jsonreponse["introstory"] + ' ' + jsonreponse["story"];
