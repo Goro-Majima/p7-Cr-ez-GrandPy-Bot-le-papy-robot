@@ -1,12 +1,12 @@
 """file used according to the mvt, send output to the route"""
 from flask import Flask, render_template, jsonify, request
-# from flask_cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 
 from grandpy.mainfile import process_question
 
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app)
 app.config['JSON_AS_ASCII'] = False # keep tones when returning json file
 # app.config['CORS_HEADERS'] = 'Content-Type'
 
