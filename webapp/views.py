@@ -6,9 +6,9 @@ from grandpy.mainfile import process_question
 
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 app.config['JSON_AS_ASCII'] = False # keep tones when returning json file
-app.config['CORS_HEADERS'] = 'Content-Type'
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 @app.route('/home/')
@@ -33,5 +33,5 @@ def api_response():
 #     response = process_question(text)
 #     return jsonify(response)
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+# if __name__ == "__main__":
+#     app.run(debug=True, port=5000)
