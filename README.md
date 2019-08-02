@@ -8,6 +8,7 @@ The chatbot is supposed to be Grandpy, an old man who likes to describe places u
 
 ## Technos used for the project
 
+- Project managed with Trello
 - Test driven development to ensure the quality of the output.
 - Development server with the framework FLASK
 - Googlemaps and Mediawiki APIs in order to get addresses and stories 
@@ -28,4 +29,4 @@ if you want to set the app on your desktop:
 
 ## Just wanna check the result ?
 
-Go to my-grandpy.herokuapp.com and check how smart is Grandpy ! 
+Go to http://my-grandpy.herokuapp.com and check out how smart is Grandpy ! 
