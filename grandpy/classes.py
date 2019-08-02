@@ -25,7 +25,7 @@ class Parsing:
         self.splittedquestion = ' '.join(self.splittedquestion)
         return self.splittedquestion
 
-class Googlemap():
+class Googlemap:
     """ Will return the coordiantes and the address asked by the user"""
     def __init__(self, splittedquestion):
         self.splittedquestion = splittedquestion

@@ -9,12 +9,6 @@ function initMap(latitude, longitude) {
     var marker = new google.maps.Marker({position: location, map: map});
   }
 
-  function initmapdiv(){
-    var newgmapSection = document.createElement("div");
-    newgmapSection.setAttribute("id", "map");
-    newgmapSection.classList.add("map");
-  }
-
 form.addEventListener('submit', function(e){
     //remove for the view display to /_api
     e.preventDefault();  
