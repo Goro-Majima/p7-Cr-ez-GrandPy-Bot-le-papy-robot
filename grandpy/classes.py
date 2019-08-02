@@ -76,9 +76,9 @@ class Mediawiki:
         data = req.json()
         places = data['query']['geosearch']
         title = places[0]['title']
-        #actually get the closest to given coordinates but what if not accurate coordinates ?
-        """choose de right parameters to get the first description of the place
-        check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats"""
+        # actually get the closest to given coordinates but what if not accurate coordinates ?
+        # choose de right parameters to get the first description of the place
+        # check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
         params = {
             'action':"query",
             'exsentences':2,
@@ -97,6 +97,7 @@ class Mediawiki:
             return args['extract'], args['fullurl']
 
 class Answer:
+    """Display a message in relation with the nature of the response"""
     def addressfound():
         """return a random message if address is found"""
         addressfoundlist = ["Tiens mon enfant, je te montre l'addresse: ",\
