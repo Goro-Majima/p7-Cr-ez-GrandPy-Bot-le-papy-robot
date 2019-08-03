@@ -1,5 +1,5 @@
 """ Test driven development file used to test classes file"""
-import urllib.request
+import requests
 from grandpy.classes import Parsing, Googlemap, Mediawiki
 from grandpy import classes
 
@@ -27,10 +27,10 @@ class Testgooglemaps:
         tested_keyword = Googlemap("tour eiffel")
         results = 48.85837009999999, 2.2944813, \
         'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France'
-        def mockreturn(request, params):
+        def mockreturn(requests, params):
             """use the arguments to return fake call"""
             return results
-        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+        monkeypatch.setattr(requests, 'get', mockreturn)
         assert tested_keyword.http_results() == results
 
 class Testmediawiki:
@@ -40,8 +40,8 @@ class Testmediawiki:
         """test what the function mediawiki must return with a fake call"""
         tested_keyword = Mediawiki(48.8748465, 2.3504873)
         results = "L'Hôtel Bourrienne (appelé aussi Hôtel de Bourrienne et Petit Hôtel Bourrienne) est un hôtel particulier du XVIIIe siècle situé au 58 rue d'Hauteville dans le 10e arrondissement de Paris. Propriété privée, il est classé au titre des monuments historiques depuis le 20 juin 1927.", 'https://fr.wikipedia.org/wiki/H%C3%B4tel_Bourrienne'
-        def mockreturn(request, params):
+        def mockreturn(requests, params):
             return results
-        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+        monkeypatch.setattr(requests, 'get', mockreturn)
         assert tested_keyword.historytell() == results
     
