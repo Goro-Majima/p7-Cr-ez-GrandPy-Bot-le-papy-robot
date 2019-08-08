@@ -1,0 +1,5 @@
+Repo git: https://github.com/Goro-Majima/p7-Cr-ez-GrandPy-Bot-le-papy-robot
+
+Application: my-grandpy.herokuapp.com
+
+Lien trello: https://trello.com/b/kwX3zgLq/papybot
