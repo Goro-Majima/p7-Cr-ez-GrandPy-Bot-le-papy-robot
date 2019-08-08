@@ -23,7 +23,7 @@ The chatbot is supposed to be Grandpy, an old man who likes to describe places u
 if you want to set the app on your desktop:
 
 - Download the repository on your desktop.
-- Make sure all requirements are installed.
+- Make sure all dependencies are installed from the requirements.
 - Execute the server with the file run.py on your terminal.
 - Once running http://127.0.0.1:5000/, on your navigator, type as url: "http://127.0.0.1:5000/"
 

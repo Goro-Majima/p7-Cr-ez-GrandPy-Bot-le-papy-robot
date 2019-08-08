@@ -77,7 +77,7 @@ class Mediawiki:
         places = data['query']['geosearch']
         title = places[0]['title']
         # actually get the closest to given coordinates but what if not accurate coordinates ?
-        # choose de right parameters to get the first description of the place
+        # choose the right parameters to get the first description of the place
         # check https://www.mediawiki.org/wiki/Extension:TextExtracts#Caveats
         params = {
             'action':"query",
